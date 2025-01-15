@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo Application</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="mx-auto min-h-screen max-w-screen-md p-5 space-y-4">
+  <h1 class="text-xl font-bold text-center">TODO List</h1>
+
+  <main class="relative flex flex-col gap-8">
+    <section class="flex gap-1">
+      <div class="flex w-full items-center border-2 border-zinc-500 rounded-md">
+        <input type="search" class="w-full p-1">
+        <button class="p-1">
+          <img src="/images/search.svg" alt="Search Logo">
+        </button>
+      </div>
+      <select name="taskOptions" class="border-2 border-zinc-500 rounded-md md:min-w-56">
+        <option value="all">All</option>
+        <option value="completed">Completed</option>
+        <option value="incomplete">Incomplete</option>
+      </select>
+    </section>
+
+    <section class="max-h-[65vh] overflow-auto space-y-4">
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 md:gap-3">
+          <input type="checkbox" class="size-5 md:size-6">
+          <p class="max-w-prose text-sm text-pretty md:text-base">Wash your clothes</p>
+        </div>
+        <div class="flex items-center gap-4 shrink-0 md:gap-6">
+          <p class="text-xs underline underline-offset-2 md:text-sm">17<sup>th</sup> Feb</p>
+          <span>🔴</span>
+          <span>✏️</span>
+          <span>❌</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 md:gap-3">
+          <input type="checkbox" class="size-5 md:size-6">
+          <p class="max-w-prose text-sm text-pretty md:text-base">Assignment DSA</p>
+        </div>
+        <div class="flex items-center gap-4 shrink-0 md:gap-6">
+          <p class="text-xs underline underline-offset-2 md:text-sm">17<sup>th</sup> Feb</p>
+          <span>🔴</span>
+          <span>✏️</span>
+          <span>❌</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 md:gap-3">
+          <input type="checkbox" class="size-5 md:size-6">
+          <p class="max-w-prose text-sm text-pretty md:text-base">Assignment DSA</p>
+        </div>
+        <div class="flex items-center gap-4 shrink-0 md:gap-6">
+          <p class="text-xs underline underline-offset-2 md:text-sm">17<sup>th</sup> Feb</p>
+          <span>🔴</span>
+          <span>✏️</span>
+          <span>❌</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 md:gap-3">
+          <input type="checkbox" class="size-5 md:size-6">
+          <p class="max-w-prose text-sm text-pretty md:text-base">Assignment DSA</p>
+        </div>
+        <div class="flex items-center gap-4 shrink-0 md:gap-6">
+          <p class="text-xs underline underline-offset-2 md:text-sm">17<sup>th</sup> Feb</p>
+          <span>🔴</span>
+          <span>✏️</span>
+          <span>❌</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 md:gap-3">
+          <input type="checkbox" class="size-5 md:size-6">
+          <p class="max-w-prose text-sm text-pretty md:text-base">Assignment DSA</p>
+        </div>
+        <div class="flex items-center gap-4 shrink-0 md:gap-6">
+          <p class="text-xs underline underline-offset-2 md:text-sm">17<sup>th</sup> Feb</p>
+          <span>🔴</span>
+          <span>✏️</span>
+          <span>❌</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 md:gap-3">
+          <input type="checkbox" class="size-5 md:size-6">
+          <p class="max-w-prose text-sm text-pretty md:text-base">Assignment DSA</p>
+        </div>
+        <div class="flex items-center gap-4 shrink-0 md:gap-6">
+          <p class="text-xs underline underline-offset-2 md:text-sm">17<sup>th</sup> Feb</p>
+          <span>🔴</span>
+          <span>✏️</span>
+          <span>❌</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 md:gap-3">
+          <input type="checkbox" class="size-5 md:size-6">
+          <p class="max-w-prose text-sm text-pretty md:text-base">Assignment DSA</p>
+        </div>
+        <div class="flex items-center gap-4 shrink-0 md:gap-6">
+          <p class="text-xs underline underline-offset-2 md:text-sm">17<sup>th</sup> Feb</p>
+          <span>🔴</span>
+          <span>✏️</span>
+          <span>❌</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 md:gap-3">
+          <input type="checkbox" class="size-5 md:size-6">
+          <p class="max-w-prose text-sm text-pretty md:text-base">Assignment DSA</p>
+        </div>
+        <div class="flex items-center gap-4 shrink-0 md:gap-6">
+          <p class="text-xs underline underline-offset-2 md:text-sm">17<sup>th</sup> Feb</p>
+          <span>🔴</span>
+          <span>✏️</span>
+          <span>❌</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 md:gap-3">
+          <input type="checkbox" class="size-5 md:size-6">
+          <p class="max-w-prose text-sm text-pretty md:text-base">Assignment DSA</p>
+        </div>
+        <div class="flex items-center gap-4 shrink-0 md:gap-6">
+          <p class="text-xs underline underline-offset-2 md:text-sm">17<sup>th</sup> Feb</p>
+          <span>🔴</span>
+          <span>✏️</span>
+          <span>❌</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 md:gap-3">
+          <input type="checkbox" class="size-5 md:size-6">
+          <p class="max-w-prose text-sm text-pretty md:text-base">Assignment DSA</p>
+        </div>
+        <div class="flex items-center gap-4 shrink-0 md:gap-6">
+          <p class="text-xs underline underline-offset-2 md:text-sm">17<sup>th</sup> Feb</p>
+          <span>🔴</span>
+          <span>✏️</span>
+          <span>❌</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 md:gap-3">
+          <input type="checkbox" class="size-5 md:size-6">
+          <p class="max-w-prose text-sm text-pretty md:text-base">Assignment DSA</p>
+        </div>
+        <div class="flex items-center gap-4 shrink-0 md:gap-6">
+          <p class="text-xs underline underline-offset-2 md:text-sm">17<sup>th</sup> Feb</p>
+          <span>🔴</span>
+          <span>✏️</span>
+          <span>❌</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 md:gap-3">
+          <input type="checkbox" class="size-5 md:size-6">
+          <p class="max-w-prose text-sm text-pretty md:text-base">Assignment DSA</p>
+        </div>
+        <div class="flex items-center gap-4 shrink-0 md:gap-6">
+          <p class="text-xs underline underline-offset-2 md:text-sm">17<sup>th</sup> Feb</p>
+          <span>🔴</span>
+          <span>✏️</span>
+          <span>❌</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 md:gap-3">
+          <input type="checkbox" class="size-5 md:size-6">
+          <p class="max-w-prose text-sm text-pretty md:text-base">Assignment DSA</p>
+        </div>
+        <div class="flex items-center gap-4 shrink-0 md:gap-6">
+          <p class="text-xs underline underline-offset-2 md:text-sm">17<sup>th</sup> Feb</p>
+          <span>🔴</span>
+          <span>✏️</span>
+          <span>❌</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 md:gap-3">
+          <input type="checkbox" class="size-5 md:size-6">
+          <p class="max-w-prose text-sm text-pretty md:text-base">Assignment DSA</p>
+        </div>
+        <div class="flex items-center gap-4 shrink-0 md:gap-6">
+          <p class="text-xs underline underline-offset-2 md:text-sm">17<sup>th</sup> Feb</p>
+          <span>🔴</span>
+          <span>✏️</span>
+          <span>❌</span>
+        </div>
+      </div>
+
+    </section>
+
+    <button class="absolute right-0 -bottom-14 px-4 py-2 font-semibold text-white bg-blue-500 rounded-md">
+      Add Task
+    </button>
+  </main>
+
+</body>
+
+</html>
