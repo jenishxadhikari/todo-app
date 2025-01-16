@@ -13,7 +13,7 @@ const todoList = JSON.parse(localStorage.getItem("todoList")) || []
 const completedList = JSON.parse(localStorage.getItem("completedList")) || []
 
 // Initial Display
-if (todoList.length > 0) {
+if (todoList.length > 0 || completedList.length > 0) {
   renderTasks()
 }
 
@@ -24,8 +24,23 @@ function updateLocalStorage() {
 }
 
 function renderTasks() {
-  renderTodoTasks()
-  renderCompletedTask()
+  const filterValue = taskOptions.value;
+  
+  todoTaskDisplay.innerHTML = ""
+  completedTaskDisplay.innerHTML = ""
+
+  switch (filterValue) {
+    case "completed":
+      renderCompletedTask();
+      break
+    case "incomplete":
+      renderTodoTasks()
+      break
+    default:
+      renderTodoTasks()
+      renderCompletedTask()
+
+  }
   document.querySelectorAll("#status").forEach((btn) => {
     btn.addEventListener("click", handleStatus)
   })
