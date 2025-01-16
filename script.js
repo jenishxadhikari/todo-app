@@ -1,5 +1,6 @@
 // DOM Element
-const taskDisplay = document.querySelector("#display")
+const todoTaskDisplay = document.querySelector("#displayTodoTask")
+const completedTaskDisplay = document.querySelector("#displayCompletedTask")
 const addTaskButton = document.getElementById("addTask")
 const taskDialog = document.querySelector("dialog")
 const closeDialogButton = document.getElementById("closeDialog")
@@ -9,6 +10,7 @@ const priorityOptions = document.getElementById("priorityOptions")
 
 // Local Storage Data
 const todoList = JSON.parse(localStorage.getItem("todoList")) || []
+const completedList = JSON.parse(localStorage.getItem("completedList")) || []
 
 // Initial Display
 if (todoList.length > 0) {
@@ -18,13 +20,28 @@ if (todoList.length > 0) {
 // Helper Functions
 function updateLocalStorage() {
   localStorage.setItem('todoList', JSON.stringify(todoList))
+  localStorage.setItem('completedList', JSON.stringify(completedList))
 }
 
 function renderTasks() {
-  taskDisplay.innerHTML = ""
+  renderTodoTasks()
+  renderCompletedTask()
+  document.querySelectorAll("#status").forEach((btn) => {
+    btn.addEventListener("click", handleStatus)
+  })
+  document.querySelectorAll("#delete").forEach((btn) => {
+    btn.addEventListener("click", handleDelete)
+  })
+  document.querySelectorAll("#edit").forEach((btn) => {
+    btn.addEventListener("click", handleEdit)
+  })
+}
+
+function renderTodoTasks() {
+  todoTaskDisplay.innerHTML = ""
   todoList.forEach((task) => {
     let priority = Array.from(priorityOptions.options).find(option => option.value === task.priority).text
-    taskDisplay.innerHTML +=
+    todoTaskDisplay.innerHTML +=
       `
       <div class="flex tasks-center justify-between gap-2" id="task" data-id=${task.id}>
         <div class="flex tasks-center gap-2 md:gap-3">
@@ -40,12 +57,23 @@ function renderTasks() {
       </div>
     `
   })
+}
 
-  document.querySelectorAll("#delete").forEach((btn) => {
-    btn.addEventListener("click", handleDelete)
-  })
-  document.querySelectorAll("#edit").forEach((btn) => {
-    btn.addEventListener("click", handleEdit)
+function renderCompletedTask() {
+  completedTaskDisplay.innerHTML = ""
+  completedList.forEach((task) => {
+    completedTaskDisplay.innerHTML +=
+      `
+      <div class="flex tasks-center justify-between gap-2" id="task" data-id=${task.id}>
+        <div class="flex tasks-center gap-2 md:gap-3">
+          <input type="checkbox" value="true" class="size-5 md:size-6" id="status" ${task.isCompleted && "checked"}>
+          <p class="max-w-prose text-sm text-pretty md:text-base ${task.isCompleted && 'line-through'}" id="title">${task.title}</p>
+        </div>
+        <div class="flex tasks-center gap-4 shrink-0 md:gap-6">
+          <p class="text-xs underline underline-offset-2 md:text-sm">${task.dueDate}</p>
+        </div>
+      </div>
+    `
   })
 }
 
@@ -72,7 +100,7 @@ function handleSubmit(e) {
     isCompleted: false
   }
 
-  if(editId){
+  if (editId) {
     const index = todoList.findIndex(task => task.id === parseInt(editId))
     todoList[index] = newTask
   } else {
@@ -104,8 +132,29 @@ function handleEdit(e) {
   taskForm.title.value = currentTask.title
   taskForm.date.value = currentTask.dueDate
   taskForm.priorityOptions.value = currentTask.priority
-  
+
   taskForm.dataset.editId = currentTask.id
+}
+
+function handleStatus(e) {
+  const id = e.target.closest("#task").dataset.id;
+  const TIndex = todoList.findIndex((task) => task.id === parseInt(id))
+  const CIndex = completedList.findIndex((task) => task.id === parseInt(id))
+
+  if ((TIndex != -1 && !todoList[TIndex].isCompleted) || (CIndex && !completedList[CIndex].isCompleted)) {
+    todoList[TIndex].isCompleted = true
+    e.target.checked = true
+    completedList.push(todoList[TIndex])
+    todoList.splice(TIndex, 1)
+  } else {
+    completedList[CIndex].isCompleted = false
+    e.target.checked = false
+    todoList.push(completedList[CIndex])
+    completedList.splice(CIndex, 1)
+  }
+
+  updateLocalStorage()
+  renderTasks()
 }
 
 // Event Listeners
