@@ -1,14 +1,115 @@
-const addBtn = document.querySelector("#add-button")
-const taskForm = document.querySelector("dialog")
-const closeDialog = document.querySelector("#close-button")
+// DOM Element
+const taskDisplay = document.querySelector("#display")
+const addTaskButton = document.getElementById("addTask")
+const taskDialog = document.querySelector("dialog")
+const closeDialogButton = document.getElementById("closeDialog")
+const taskForm = document.querySelector("form")
+const taskOptions = document.getElementById("taskOptions")
+const priorityOptions = document.getElementById("priorityOptions")
 
-function handleAddTask(){
-  taskForm.showModal()
+// Local Storage Data
+const todoList = JSON.parse(localStorage.getItem("todoList")) || []
+
+// Initial Display
+if (todoList.length > 0) {
+  renderTasks()
 }
 
-function handleCloseDialog(){
-  taskForm.close()
+// Helper Functions
+function updateLocalStorage() {
+  localStorage.setItem('todoList', JSON.stringify(todoList))
 }
 
-addBtn.addEventListener("click", handleAddTask)
-closeDialog.addEventListener("click", handleCloseDialog)
+function renderTasks() {
+  taskDisplay.innerHTML = ""
+  todoList.forEach((task) => {
+    let priority = Array.from(priorityOptions.options).find(option => option.value === task.priority).text
+    taskDisplay.innerHTML +=
+      `
+      <div class="flex tasks-center justify-between gap-2" id="task" data-id=${task.id}>
+        <div class="flex tasks-center gap-2 md:gap-3">
+          <input type="checkbox" value="true" class="size-5 md:size-6" id="status" ${task.isCompleted && "checked"}>
+          <p class="max-w-prose text-sm text-pretty md:text-base ${task.isCompleted && 'line-through'}" id="title">${task.title}</p>
+        </div>
+        <div class="flex tasks-center gap-4 shrink-0 md:gap-6">
+          <p class="text-xs underline underline-offset-2 md:text-sm">${task.dueDate}</p>
+          <span>${priority}</span>
+          <button id="edit">✏️</button>
+          <button id="delete">❌</button>
+        </div>
+      </div>
+    `
+  })
+
+  document.querySelectorAll("#delete").forEach((btn) => {
+    btn.addEventListener("click", handleDelete)
+  })
+  document.querySelectorAll("#edit").forEach((btn) => {
+    btn.addEventListener("click", handleEdit)
+  })
+}
+
+// Event Handlers
+function handleAddTask() {
+  taskDialog.showModal()
+}
+
+function handleCloseDialog() {
+  taskForm.reset()
+  taskDialog.close()
+}
+
+function handleSubmit(e) {
+  e.preventDefault()
+
+  const randomId = Math.floor(Math.random() * 100)
+  const editId = taskForm.dataset.editId
+  const newTask = {
+    id: editId && parseInt(editId) || randomId,
+    title: e.target.title.value,
+    dueDate: e.target.date.value,
+    priority: e.target.priorityOptions.value,
+    isCompleted: false
+  }
+
+  if(editId){
+    const index = todoList.findIndex(task => task.id === parseInt(editId))
+    todoList[index] = newTask
+  } else {
+    todoList.push(newTask)
+  }
+
+  taskForm.dataset.editId = ""
+  updateLocalStorage()
+  taskForm.reset()
+  taskDialog.close()
+  renderTasks()
+}
+
+function handleDelete(e) {
+  const id = e.target.closest("#task").dataset.id;
+  const index = todoList.findIndex((task) => task.id === parseInt(id))
+  todoList.splice(index, 1)
+
+  updateLocalStorage()
+  renderTasks()
+}
+
+function handleEdit(e) {
+  const id = e.target.closest("#task").dataset.id;
+  const index = todoList.findIndex((task) => task.id === parseInt(id))
+  const currentTask = todoList[index]
+
+  taskDialog.showModal()
+  taskForm.title.value = currentTask.title
+  taskForm.date.value = currentTask.dueDate
+  taskForm.priorityOptions.value = currentTask.priority
+  
+  taskForm.dataset.editId = currentTask.id
+}
+
+// Event Listeners
+addTaskButton.addEventListener("click", handleAddTask)
+closeDialogButton.addEventListener("click", handleCloseDialog)
+taskForm.addEventListener("submit", handleSubmit)
+taskOptions.addEventListener("change", renderTasks)
