@@ -1,5 +1,7 @@
-Technologies: HTML5, CSS3, TailwindCSS, JavaScript
-Objective: Understand CRUD operations and local storage.
+# Todo App
+
+#### Technologies: HTML5, CSS3, TailwindCSS, JavaScript
+#### Objective: Understand CRUD operations and local storage.
 
 Features:
 - Task CRUD
