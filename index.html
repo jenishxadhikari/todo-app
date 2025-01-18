@@ -1,63 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo Application</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo Application</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
+  <body class="mx-auto min-h-screen max-w-screen-md p-5 space-y-4">
+    <h1 class="text-xl font-bold text-center">TODO List</h1>
 
-<body class="mx-auto min-h-screen max-w-screen-md p-5 space-y-4">
-  <h1 class="text-xl font-bold text-center">TODO List</h1>
-
-  <main class="relative flex flex-col gap-8">
-    <section class="flex gap-1">
-      <select name="taskOptions" id="taskOptions" class="border-2 p-1 border-zinc-500 rounded-md md:min-w-56">
-        <option value="all">All</option>
-        <option value="completed">Completed</option>
-        <option value="incomplete">Incomplete</option>
-      </select>
-    </section>
-
-    <section class="max-h-[65vh] overflow-auto space-y-4">
-      <div class="space-y-4" id="displayTodoTask">
-
-      </div>
-      <hr>
-      <div class="space-y-4" id="displayCompletedTask">
-
-      </div>
-    </section>
-
-    <dialog class="relative w-full m-auto py-5 px-3 rounded-md w-[300px] max-w-[400px]">
-      <form class="flex flex-col w-full">
-        <label for="task">Task</label>
-        <input id="title" type="text" class="border-2 border-zinc-500 rounded-md mb-3 p-1" required>
-        <label for="date">Deadline</label>
-        <input id="date" type="date" class="border-2 border-zinc-500 rounded-md mb-3 p-1" required>
-        <label for="priorityOptions">Priority</label>
-        <select name="priorityOptions" id="priorityOptions" class="border-2 border-zinc-500 rounded-md mb-3 p-1">
-          <option value="high" selected>🔴</option>
-          <option value="medium">🟡</option>
-          <option value="low">🟢</option>
+    <main class="relative flex flex-col gap-8">
+      <section class="flex gap-1">
+        <select
+          name="taskOptions"
+          id="taskOptions"
+          class="border-2 p-1 border-zinc-500 rounded-md md:min-w-56"
+        >
+          <option value="all">All</option>
+          <option value="completed">Completed</option>
+          <option value="incomplete">Incomplete</option>
         </select>
-        <div class="flex gap-2">
-          <button type="submit" class="w-full px-4 py-2 font-semibold text-white bg-blue-500 rounded-md">Add</button>
-          <button type="reset" class="px-4 w-full py-2 font-semibold border-2 border-zinc-500   rounded-md">Reset</button>
-        </div>
-      </form>
-      <button class="absolute top-1 right-1 p-1" id="closeDialog">❌</button>
-    </dialog>
+      </section>
 
-    <button id="addTask"
-      class="absolute right-0 -bottom-14 px-4 py-2 font-semibold text-white bg-blue-500 rounded-md">
-      Add Task
-    </button>
-  </main>
+      <section class="max-h-[65vh] overflow-auto space-y-4">
+        <div class="space-y-4" id="displayTodoTask"></div>
+        <hr />
+        <div class="space-y-4" id="displayCompletedTask"></div>
+      </section>
 
-  <script src="script.js"></script>
-</body>
+      <dialog
+        class="relative w-full m-auto py-5 px-3 rounded-md w-[300px] max-w-[400px]"
+      >
+        <form class="flex flex-col w-full">
+          <label for="task">Task</label>
+          <input
+            id="title"
+            type="text"
+            class="border-2 border-zinc-500 rounded-md mb-3 p-1"
+            required
+          />
+          <label for="date">Deadline</label>
+          <input
+            id="date"
+            type="date"
+            class="border-2 border-zinc-500 rounded-md mb-3 p-1"
+            required
+          />
+          <label for="priorityOptions">Priority</label>
+          <select
+            name="priorityOptions"
+            id="priorityOptions"
+            class="border-2 border-zinc-500 rounded-md mb-3 p-1"
+          >
+            <option value="high" selected>🔴</option>
+            <option value="medium">🟡</option>
+            <option value="low">🟢</option>
+          </select>
+          <div class="flex gap-2">
+            <button
+              type="submit"
+              class="w-full px-4 py-2 font-semibold text-white bg-blue-500 rounded-md"
+            >
+              Add
+            </button>
+            <button
+              type="reset"
+              class="px-4 w-full py-2 font-semibold border-2 border-zinc-500 rounded-md"
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+        <button class="absolute top-1 right-1 p-1" id="closeDialog">❌</button>
+      </dialog>
 
+      <button
+        id="addTask"
+        class="absolute right-0 -bottom-14 px-4 py-2 font-semibold text-white bg-blue-500 rounded-md"
+      >
+        Add Task
+      </button>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
 </html>
